@@ -1,0 +1,1 @@
+var1="my-s3-bucket"
