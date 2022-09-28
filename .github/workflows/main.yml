@@ -7,8 +7,6 @@ on:
 
 env:
   aws-region: us-east-1
-#   aws_s3_bucket: divya-s3-bucket
-#   tfstate_file: terraform.tfstate
   
 jobs:
   terraform1:
