@@ -1,1 +1,1 @@
-var1="my-s3-bucket"
+var1="divya-s3-bucket1"
