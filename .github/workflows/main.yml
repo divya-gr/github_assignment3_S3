@@ -7,7 +7,7 @@ on:
 
 env:
   aws-region: us-east-1
-  aws_s3_bucket: my-s3-buck
+  aws_s3_bucket: divya-s3-bucket
   tfstate_file: terraform.tfstate
   
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - name: Terraform HasiCorp SetUp
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.2.6
+          terraform_version: 1.1.7
 
       - name: AWS Credentials Configuration
         uses: aws-actions/configure-aws-credentials@v1
