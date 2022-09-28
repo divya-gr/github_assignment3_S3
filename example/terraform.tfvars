@@ -1,1 +1,1 @@
-var1="divya-s3-bucket1"
+var1= "divya-s3-bucket1"
