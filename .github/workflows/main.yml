@@ -2,48 +2,50 @@ name: terraform
 
 on:
   workflow_dispatch:
-#   push: 
-#    branches: ["main"]
-
-env:
-  aws-region: us-east-1
+  
+# env:
+#   aws-region: us-east-1
   
 jobs:
   terraform1:
     name: terraform
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./example
+#     defaults:
+#       run:
+#         working-directory: ./example
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - name: trigger the workflow in another repo
+        uses: peter-evans/repository-dispatch@v2
 
-      - name: Terraform HasiCorp SetUp
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.1.7
+#       - name: Terraform HasiCorp SetUp
+#         uses: hashicorp/setup-terraform@v2
+#         with:
+#           terraform_version: 1.1.7
 
       - name: AWS Credentials Configuration
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: ${{ env.aws-region }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+#           aws-region: ${{ env.aws-region }}
+          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          token: ${{secrets.CROSS_REPO_SECRET}}
+          repository: divya-gr/Terrascan-Implementation
+          event-type: my-event
+#           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
       
-      - name: terraform init
-        run: 
-          terraform init
-      - name: terraform validate
-        run: 
-          terraform validate
+#       - name: terraform init
+#         run: 
+#           terraform init
+#       - name: terraform validate
+#         run: 
+#           terraform validate
 
-      - name: terraform plan
-        run: 
-          terraform plan
+#       - name: terraform plan
+#         run: 
+#           terraform plan
 
-      - name: terraform apply
-        run: 
-          terraform apply -auto-approve
+#       - name: terraform apply
+#         run: 
+#           terraform apply -auto-approve
